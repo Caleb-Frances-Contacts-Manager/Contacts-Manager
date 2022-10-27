@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsMain {
-    private final static Path path = Paths.get("contacts.txt");
+    private final static Path path = Paths.get("src","contacts.txt");
 
     private static void writeLines(List<String> lines) {
         Path path = Paths.get("contacts.txt");
