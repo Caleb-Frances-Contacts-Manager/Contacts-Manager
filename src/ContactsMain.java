@@ -45,19 +45,31 @@ public class ContactsMain {
         }
         return writeLines(newContact);
     }
+    public static void searchContact() {
+        Input nameInput = new Input();
+        String userInput;
+        userInput = nameInput.getString("Enter the name to search:");
+        List<String> allContacts = readLines();
+        for (String contact : allContacts) {
+            if (contact.toLowerCase().contains(userInput.toLowerCase())) {
+                System.out.println(contact);
+            }
+        }
+    }
 
     private static List<String> deleteContact(){
         Input deleteName = new Input();
         List<String> contacts = readLines();
-        List <String> updatedContacts = new ArrayList<>();
         String userInput;
         userInput = deleteName.getString("Enter a name to delete:");
-        for (String contact : readLines()) {
-            if (!contact.toLowerCase().contains(userInput.toLowerCase())){
-                updatedContacts.add(contact);
+            if (contacts.contains(userInput)){
+                contacts.remove(userInput);
+                for (String contact : contacts){
+                    System.out.println(contact);
+                }
+
             }
-        }
-        return writeLines(updatedContacts);
+        return writeLines(contacts);
     }
 
 
@@ -86,6 +98,7 @@ public class ContactsMain {
                     addContact();
                     break;
                 case "3":
+                    searchContact();
                     break;
                 case "4":
                     deleteContact();
