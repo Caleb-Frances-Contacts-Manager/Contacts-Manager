@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ContactsMain {
     private final static Path path = Paths.get("src","contacts.txt");
@@ -20,12 +21,14 @@ public class ContactsMain {
     }
 
     private static List<String> addContact(){
+        Scanner scanner = new Scanner(System.in);
         Input addNum = new Input();
-        String userInput = "yes";
-        userInput = addNum.getString(("Enter the name and number of the contact seperated by a | "));
         List<String> newContact = new ArrayList<>();
-        newContact.add(userInput);
-
+        String userInput;
+        userInput = addNum.getString("Enter a contact name:");
+        String newNumber;
+        newNumber = addNum.getString("Enter a phone number");
+        newContact.add(userInput + " |   " + newNumber);
         try {
             Files.write(path, newContact, StandardOpenOption.APPEND);
         } catch (IOException e) {
