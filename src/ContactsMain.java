@@ -5,10 +5,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ContactsMain {
-    private final static Path path = Paths.get("src","contacts.txt");
+    private final static Path path = Paths.get("src", "contacts.txt");
 
     private static List<String> writeLines(List<String> lines) {
         Path path = Paths.get("contacts.txt");
@@ -30,7 +29,7 @@ public class ContactsMain {
         return contacts;
     }
 
-    private static List<String> addContact(){
+    private static List<String> addContact() {
         Input addNum = new Input();
         List<String> newContact = new ArrayList<>();
         String userInput;
@@ -45,6 +44,7 @@ public class ContactsMain {
         }
         return writeLines(newContact);
     }
+
     public static void searchContact() {
         Input nameInput = new Input();
         String userInput;
@@ -57,25 +57,7 @@ public class ContactsMain {
         }
     }
 
-    private static List<String> deleteContact(){
-        Input deleteName = new Input();
-        List<String> contacts = readLines();
-        String userInput;
-        userInput = deleteName.getString("Enter a name to delete:");
-            if (contacts.contains(userInput)){
-                contacts.remove(userInput);
-                for (String contact : contacts){
-                    System.out.println(contact);
-                }
-
-            }
-        return writeLines(contacts);
-    }
-
-
-
-    public static void main(String[] args) {
-
+    public static void displayContacts() {
         Input input = new Input();
 
         String userChoice = "yes";
@@ -110,5 +92,27 @@ public class ContactsMain {
                     break;
             }
         }
+    }
+
+
+    public static void deleteContact(){
+        Input deleteName = new Input();
+        List<String> contacts = readLines();
+        String userInput;
+        userInput = deleteName.getString("Enter a name to delete:");
+            for (String contact : contacts){
+                if (contact.toLowerCase().contains(userInput.toLowerCase())){
+                    System.out.println(contact);
+                    contacts.remove(userInput);
+                }
+
+            }
+        writeLines(contacts);
+    }
+
+
+
+    public static void main(String[] args) {
+displayContacts();
     }
 }// end ContactsMain class
