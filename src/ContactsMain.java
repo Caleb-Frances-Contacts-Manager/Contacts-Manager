@@ -4,20 +4,34 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ContactsMain {
     private final static Path path = Paths.get("src","contacts.txt");
 
-    private static void writeLines(List<String> lines) {
+    private static List<String> writeLines(List<String> lines) {
         Path path = Paths.get("contacts.txt");
-
         try {
             Files.write(path, lines);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return lines;
+    }
+
+    private static List<String> addContact(){
+        Input addNum = new Input();
+        String userInput = "yes";
+        userInput = addNum.getString(("Enter the name and number of the contact seperated by a | "));
+        List<String> newContact = new ArrayList<>();
+        newContact.add(userInput);
+
+        try {
+            Files.write(path, newContact, StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return writeLines(newContact);
     }
 
     private static List<String> readLines() {
@@ -29,6 +43,8 @@ public class ContactsMain {
         }
         return contacts;
     }
+
+
 
     public static void main(String[] args) {
 
@@ -51,13 +67,7 @@ public class ContactsMain {
                     }
                     break;
                 case "2":
-                    List<String> newContact = List.of("XXX | 956-337-1322", "tdrtrd | 54564-78678");
-                            try {
-                    Files.write(path, newContact, StandardOpenOption.APPEND);
-                    } catch (IOException e) {
-                     e.printStackTrace();
-                    }
-                    writeLines(newContact);
+                    addContact();
                     break;
                 case "3":
                     break;
