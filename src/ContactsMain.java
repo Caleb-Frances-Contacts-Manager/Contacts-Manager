@@ -2,7 +2,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ContactsMain {
@@ -49,8 +51,13 @@ public class ContactsMain {
                     }
                     break;
                 case "2":
-
-
+                    List<String> newContact = List.of("XXX | 956-337-1322", "tdrtrd | 54564-78678");
+                            try {
+                    Files.write(path, newContact, StandardOpenOption.APPEND);
+                    } catch (IOException e) {
+                     e.printStackTrace();
+                    }
+                    writeLines(newContact);
                     break;
                 case "3":
                     break;
