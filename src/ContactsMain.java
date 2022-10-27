@@ -20,8 +20,17 @@ public class ContactsMain {
         return lines;
     }
 
+    private static List<String> readLines() {
+        List<String> contacts = new ArrayList<>();
+        try {
+            contacts = Files.readAllLines(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return contacts;
+    }
+
     private static List<String> addContact(){
-        Scanner scanner = new Scanner(System.in);
         Input addNum = new Input();
         List<String> newContact = new ArrayList<>();
         String userInput;
@@ -37,14 +46,18 @@ public class ContactsMain {
         return writeLines(newContact);
     }
 
-    private static List<String> readLines() {
-        List<String> contacts = new ArrayList<>();
-        try {
-            contacts = Files.readAllLines(path);
-        } catch (IOException e) {
-            e.printStackTrace();
+    private static List<String> deleteContact(){
+        Input deleteName = new Input();
+        List<String> contacts = readLines();
+        List <String> updatedContacts = new ArrayList<>();
+        String userInput;
+        userInput = deleteName.getString("Enter a name to delete:");
+        for (String contact : readLines()) {
+            if (!contact.toLowerCase().contains(userInput.toLowerCase())){
+                updatedContacts.add(contact);
+            }
         }
-        return contacts;
+        return writeLines(updatedContacts);
     }
 
 
@@ -75,13 +88,12 @@ public class ContactsMain {
                 case "3":
                     break;
                 case "4":
+                    deleteContact();
                     break;
                 case "5":
                     break;
                 default:
-                    System.out.println("YOU LITERALLY DID NOT TYPE IN A NUMBER, IDIOT.");//default means it didn't match
-                    // any of
-                    // the switches so run this
+                    System.out.println("YOU DID NOT TYPE IN A NUMBER.");
                     break;
             }
         }
