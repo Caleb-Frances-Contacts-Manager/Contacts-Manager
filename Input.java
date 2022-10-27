@@ -19,7 +19,6 @@ public class Input {
         System.out.println(prompt);
         return scanner.nextLine();
     }
-
      }
 
 

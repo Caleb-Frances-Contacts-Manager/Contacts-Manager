@@ -6,11 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsMain {
+    private final static Path path = Paths.get("contacts.txt");
 
-
-
-    public static void main(String[] args) {
+    private static void writeLines(List<String> lines) {
         Path path = Paths.get("contacts.txt");
+
+        try {
+            Files.write(path, lines);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static List<String> readLines() {
         List<String> contacts = new ArrayList<>();
         try {
             contacts = Files.readAllLines(path);
@@ -19,42 +27,44 @@ public class ContactsMain {
         }
 
 
+    public static void main (String[]args){
 
 
-
-        Input input = new Input();
-        //Movie[] movies = MoviesArray.findAll();
+            Input input = new Input();
 
 
-        String userChoice = "yes";
-        while (!userChoice.equals("5")) {
-            System.out.println("1. View contacts");
-            System.out.println("2.Add a new contact.");
-            System.out.println("3. Search a contact by name.");
-            System.out.println("4. Delete an existing contact.");
-            System.out.println("5. Exit.");
+            String userChoice = "yes";
+            while (!userChoice.equals("5")) {
+                System.out.println("1. View contacts");
+                System.out.println("2.Add a new contact.");
+                System.out.println("3. Search a contact by name.");
+                System.out.println("4. Delete an existing contact.");
+                System.out.println("5. Exit.");
 
-            userChoice = input.getString("Enter an option (1,2,3,4, or 5)");
+                userChoice = input.getString("Enter an option (1,2,3,4, or 5)");
 
-            switch (userChoice) {
-                case "1":
-                    for (String contact : contacts) {
-                        System.out.println(contact);
-                    }
-                    break;
-                case "2":
-                    break;
-                case "3":
-                    break;
-                case "4":
-                    break;
-                case "5":
-                    break;
-                default:
-                    System.out.println("YOU LITERALLY DID NOT TYPE IN A NUMBER, IDIOT.");//default means it didn't match
-                    // any of
-                    // the switches so run this
-                    break;
+                switch (userChoice) {
+                    case "1":
+                        for (String contact : contacts) {
+                            System.out.println(contact);
+                        }
+                        break;
+                    case "2":
+
+
+                        break;
+                    case "3":
+                        break;
+                    case "4":
+                        break;
+                    case "5":
+                        break;
+                    default:
+                        System.out.println("YOU LITERALLY DID NOT TYPE IN A NUMBER, IDIOT.");//default means it didn't match
+                        // any of
+                        // the switches so run this
+                        break;
+                }
             }
         }
     }
