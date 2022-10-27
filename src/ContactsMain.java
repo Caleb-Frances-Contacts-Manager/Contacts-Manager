@@ -42,6 +42,8 @@ public class ContactsMain {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Your contact was added!");
+        viewContacts();
         return writeLines(newContact);
     }
 
@@ -57,24 +59,27 @@ public class ContactsMain {
         }
     }
 
+    public static void viewContacts(){
+        List<String> contacts = readLines();
+        for (String contact : contacts) {
+            System.out.println(contact);
+        }
+    }
     public static void displayContacts() {
         Input input = new Input();
 
         String userChoice = "yes";
         while (!userChoice.equals("5")) {
-            System.out.println("1. View contacts");
+            System.out.printf("%n1. View contacts%n");
             System.out.println("2. Add a new contact.");
             System.out.println("3. Search a contact by name.");
             System.out.println("4. Delete an existing contact.");
             System.out.println("5. Exit.");
 
             userChoice = input.getString("Enter an option (1,2,3,4, or 5)");
-            List<String> contacts = readLines();
             switch (userChoice) {
                 case "1":
-                    for (String contact : contacts) {
-                        System.out.println(contact);
-                    }
+                    viewContacts();
                     break;
                 case "2":
                     addContact();
@@ -94,7 +99,6 @@ public class ContactsMain {
         }
     }
 
-
     public static void deleteContact(){
         Input deleteName = new Input();
         List<String> contacts = readLines();
@@ -112,7 +116,5 @@ public class ContactsMain {
 
 
 
-    public static void main(String[] args) {
-displayContacts();
-    }
+
 }// end ContactsMain class
