@@ -37,7 +37,7 @@ public class ContactsMain {
         newLastName = addNum.getString("Enter your contact's last name:");
         String newNumber;
         newNumber = addNum.getString("Enter a phone number: (###-###-####)");
-        newContact.add(newFirstName + " "+ newLastName + " |   " + newNumber);
+        newContact.add("|  " + newFirstName + " " + newLastName + " |   " + newNumber + "         |");
             try {
                 Files.write(path, newContact, StandardOpenOption.APPEND);
             } catch (IOException e) {
@@ -89,15 +89,6 @@ public class ContactsMain {
         return readLines();
     }
 
-//    public static void appendContacts(List<String> entered){
-//        entered = readLines();
-//        try {
-//            Files.write(path, entered, StandardOpenOption.APPEND);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     public static void viewContacts(){
         List<String> contacts = readLines();
         for (String contact : contacts) {
@@ -107,8 +98,7 @@ public class ContactsMain {
 
     public static void displayContacts() {
         Input input = new Input();
-
-        String userChoice = "yes";
+        String userChoice = "";
         while (!userChoice.equals("5")) {
             System.out.printf("%n1. View contacts%n");
             System.out.println("2. Add a new contact.");
