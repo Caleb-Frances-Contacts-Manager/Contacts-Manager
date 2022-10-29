@@ -38,11 +38,11 @@ public class ContactsMain {
         String newNumber;
         newNumber = addNum.getString("Enter a phone number: (###-###-####)");
         newContact.add(newFirstName + " "+ newLastName + " |   " + newNumber);
-        try {
-            Files.write(path, newContact, StandardOpenOption.APPEND);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            try {
+                Files.write(path, newContact, StandardOpenOption.APPEND);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         System.out.printf("%nYour contact was added!%n%n");
         viewContacts();
         System.out.printf("%n");
@@ -81,11 +81,11 @@ public class ContactsMain {
                 }
             }
         }
-        try {
-            Files.write(path, allContacts);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            try {
+                Files.write(path, allContacts);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         return readLines();
     }
 
