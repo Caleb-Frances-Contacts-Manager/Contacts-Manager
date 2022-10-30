@@ -31,17 +31,19 @@ public class ContactsMain {
     private static List<String> addContact() {
         Input addNum = new Input();
         List<String> newContact = new ArrayList<>();
-        String userInput;
-        userInput = addNum.getString("Enter a contact name:");
+        String newFirstName;
+        newFirstName = addNum.getString("Enter your contact's first name:");
+        String newLastName;
+        newLastName = addNum.getString("Enter your contact's last name:");
         String newNumber;
-        newNumber = addNum.getString("Enter a phone number");
-        newContact.add(userInput + " |   " + newNumber);
+        newNumber = addNum.getString("Enter a phone number: (###-###-####)");
+        newContact.add(newFirstName + " "+ newLastName + " |   " + newNumber);
         try {
             Files.write(path, newContact, StandardOpenOption.APPEND);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Your contact was added!");
+        System.out.printf("%nYour contact was added!%n%n");
         viewContacts();
         System.out.printf("%n");
         return writeLines(newContact);
@@ -58,8 +60,6 @@ public class ContactsMain {
             }
         }
     }
-
-
 
 
     public static List<String> deleteContact() {
