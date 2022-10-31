@@ -4,6 +4,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Contacts {
     private final static Path path = Paths.get("src", "contacts.txt");
@@ -28,6 +30,7 @@ public class Contacts {
         return contacts;
     }
 
+
     private static List<String> addContact() {
         Input addNum = new Input();
         List<String> newContact = new ArrayList<>();
@@ -36,8 +39,9 @@ public class Contacts {
         String newLastName;
         newLastName = addNum.getString("Enter your contact's last name:");
         String newNumber;
-        newNumber = addNum.getString("Enter a phone number: (###-###-####)");
-        String tempString = String.format("|  %-1s %-11s | %-14s |",newFirstName, newLastName, newNumber);
+        newNumber = addNum.getString("Enter a phone number: (##########)");
+        String number = newNumber.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
+        String tempString = String.format("|  %-1s %-11s | %-14s |",newFirstName, newLastName, number);
         newContact.add(tempString);
             try {
                 Files.write(path, newContact, StandardOpenOption.APPEND);
