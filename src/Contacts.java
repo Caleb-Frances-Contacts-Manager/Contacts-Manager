@@ -4,20 +4,17 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Contacts {
     private final static Path path = Paths.get("src", "contacts.txt");
 
-    private static List<String> writeLines(List<String> lines) {
+    private static void writeLines(List<String> lines) {
         Path path = Paths.get("contacts.txt");
         try {
             Files.write(path, lines);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return lines;
     }
 
 
@@ -32,7 +29,7 @@ public class Contacts {
     }
 
 
-    private static List<String> addContact() {
+    private static void addContact() {
         Input addNum = new Input();
         List<String> newContact = new ArrayList<>();
         String newFirstName;
@@ -53,7 +50,7 @@ public class Contacts {
         System.out.printf("%nYour contact was added!%n%n");
         viewContacts();
         System.out.printf("%n");
-        return writeLines(newContact);
+        writeLines(newContact);
     }
 
 
@@ -70,7 +67,7 @@ public class Contacts {
     }
 
 
-    public static List<String> deleteContact() {
+    public static void deleteContact() {
         Input deleteName = new Input();
         String userInput;
         List<String> allContacts = readLines();
@@ -92,7 +89,7 @@ public class Contacts {
                     e.printStackTrace();
                 }
         }
-        return readLines();
+        readLines();
     }
 
 
