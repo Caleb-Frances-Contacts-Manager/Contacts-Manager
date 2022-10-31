@@ -5,7 +5,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 
-public class ContactsMain {
+public class Contacts {
     private final static Path path = Paths.get("src", "contacts.txt");
 
     private static List<String> writeLines(List<String> lines) {
@@ -37,7 +37,8 @@ public class ContactsMain {
         newLastName = addNum.getString("Enter your contact's last name:");
         String newNumber;
         newNumber = addNum.getString("Enter a phone number: (###-###-####)");
-        newContact.add("|  " + newFirstName + " " + newLastName + " |   " + newNumber + "         |");
+        String tempString = String.format("|  %-1s %-11s | %-14s |",newFirstName, newLastName, newNumber);
+        newContact.add(tempString);
             try {
                 Files.write(path, newContact, StandardOpenOption.APPEND);
             } catch (IOException e) {
