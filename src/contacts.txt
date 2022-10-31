@@ -1,12 +1,7 @@
 -------------------------------------------
-|      Name             |       Number    |
-|  Emma T. Johns        | (203) 793-9582    |
-|  Calvin D. Priddy     | (904) 473-0867    |
-|  Larry K. Young       | (402) 997-5315    |
-|  Helen R. Jiron       | (626) 490-5991    |
-|  Mac S. Jones         | (251) 965-0515    |
-|  Walter J. Barrett    | (484) 986-5183    |
-|  Leah T. Mason        | (801) 663-4875    |
-|  Brittney D. Sanchez  | (786) 866-9939    |
-|  Jesus P. Goldberg    | (903) 749-4478   |
-|  Frances Perez       | (956) 555-5555 |
+|      Name             |       Number     |
+
+|  Maryellen C. Valles  |  (907) 522-1354  |
+|  Alex T. Burkett  |  (225) 810-5130  |
+|  Julie W. Lyons  |  (216) 606-3028  |
+|  David L. Bailey  |  (334) 834-3574  |

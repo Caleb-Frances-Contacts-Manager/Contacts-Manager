@@ -41,7 +41,9 @@ public class Contacts {
         String newNumber;
         newNumber = addNum.getString("Enter a phone number: (##########)");
         String number = newNumber.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
-        String tempString = String.format("|  %-1s %-11s | %-14s |",newFirstName, newLastName, number);
+        String newFullName = (newFirstName + " " + newLastName);
+
+        String tempString = String.format("|  %-12s  |  %-12s  |",newFullName, number);
         newContact.add(tempString);
             try {
                 Files.write(path, newContact, StandardOpenOption.APPEND);
@@ -71,9 +73,7 @@ public class Contacts {
         Input deleteName = new Input();
         String userInput;
         List<String> allContacts = readLines();
-        for (String contacts : allContacts) {
-            System.out.printf(contacts + "%n");
-        }
+        viewContacts();
         System.out.printf("%n");
         userInput = deleteName.getString("Enter a name to delete from the list above:");
         for (Iterator<String> contact = allContacts.iterator(); contact.hasNext(); ) {
