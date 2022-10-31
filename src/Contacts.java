@@ -20,6 +20,7 @@ public class Contacts {
         return lines;
     }
 
+
     private static List<String> readLines() {
         List<String> contacts = new ArrayList<>();
         try {
@@ -42,8 +43,7 @@ public class Contacts {
         newNumber = addNum.getString("Enter a phone number: (##########)");
         String number = newNumber.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
         String newFullName = (newFirstName + " " + newLastName);
-
-        String tempString = String.format("|  %-12s  |  %-12s  |",newFullName, number);
+        String tempString = String.format("|  " + "%-12s"+ "   |   " +  "%-12s" + "  |",newFullName, number);
         newContact.add(tempString);
             try {
                 Files.write(path, newContact, StandardOpenOption.APPEND);
@@ -55,6 +55,7 @@ public class Contacts {
         System.out.printf("%n");
         return writeLines(newContact);
     }
+
 
     public static void searchContact() {
         Input nameInput = new Input();
@@ -85,14 +86,15 @@ public class Contacts {
                     System.out.println(contacts);
                 }
             }
+                try {
+                    Files.write(path, allContacts);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
         }
-            try {
-                Files.write(path, allContacts);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         return readLines();
     }
+
 
     public static void viewContacts(){
         List<String> contacts = readLines();
@@ -100,6 +102,7 @@ public class Contacts {
             System.out.println(contact);
         }
     }
+
 
     public static void displayContacts() {
         Input input = new Input();
