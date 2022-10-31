@@ -3,8 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ContactsMain {
     private final static Path path = Paths.get("src", "contacts.txt");
@@ -59,12 +58,43 @@ public class ContactsMain {
         }
     }
 
+
+
+
+    public static void deleteContact() {
+        Input deleteName = new Input();
+        String userInput;
+        List<String> allContacts = readLines();
+        for (String contacts : allContacts) {
+            System.out.printf(contacts + "%n");
+        }
+        System.out.printf("%n");
+        userInput = deleteName.getString("Enter a name to delete from the list above:");
+        for (Iterator<String> contact = allContacts.iterator(); contact.hasNext(); ) {
+            String con = contact.next();
+            if (con.toLowerCase().contains(userInput.toLowerCase())) {
+                contact.remove();
+                System.out.printf("%nThe contact has been removed!%n%n");
+                for (String contacts : allContacts) {
+                    System.out.println(contacts);
+
+                }
+            } writeLines(allContacts);
+//            else if (!con.toLowerCase().contains(userInput.toLowerCase())){
+//                System.out.printf("%nThis contact could not be found!%n");
+//                deleteContact();
+            //}
+        }
+
+    }
+
     public static void viewContacts(){
         List<String> contacts = readLines();
         for (String contact : contacts) {
             System.out.println(contact);
         }
     }
+
     public static void displayContacts() {
         Input input = new Input();
 
@@ -97,21 +127,6 @@ public class ContactsMain {
                     break;
             }
         }
-    }
-
-    public static void deleteContact(){
-        Input deleteName = new Input();
-        List<String> contacts = readLines();
-        String userInput;
-        userInput = deleteName.getString("Enter a name to delete:");
-            for (String contact : contacts){
-                if (contact.toLowerCase().contains(userInput.toLowerCase())){
-                    System.out.println(contact);
-                    contacts.remove(userInput);
-                }
-
-            }
-        writeLines(contacts);
     }
 
 
