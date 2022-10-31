@@ -43,6 +43,7 @@ public class ContactsMain {
         }
         System.out.println("Your contact was added!");
         viewContacts();
+        System.out.printf("%n");
         return writeLines(newContact);
     }
 
@@ -61,7 +62,7 @@ public class ContactsMain {
 
 
 
-    public static void deleteContact() {
+    public static List<String> deleteContact() {
         Input deleteName = new Input();
         String userInput;
         List<String> allContacts = readLines();
@@ -77,16 +78,25 @@ public class ContactsMain {
                 System.out.printf("%nThe contact has been removed!%n%n");
                 for (String contacts : allContacts) {
                     System.out.println(contacts);
-
                 }
-            } writeLines(allContacts);
-//            else if (!con.toLowerCase().contains(userInput.toLowerCase())){
-//                System.out.printf("%nThis contact could not be found!%n");
-//                deleteContact();
-            //}
+            }
         }
-
+        try {
+            Files.write(path, allContacts);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return readLines();
     }
+
+//    public static void appendContacts(List<String> entered){
+//        entered = readLines();
+//        try {
+//            Files.write(path, entered, StandardOpenOption.APPEND);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public static void viewContacts(){
         List<String> contacts = readLines();
